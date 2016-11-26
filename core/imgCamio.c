@@ -363,73 +363,127 @@ char *imgcam_get_msg()
 
 void imgcam_init()
 {
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	static int first_time = 1;
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	qhy_core_init();
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if (!first_time)
 	{
 #ifdef HAVE_SBIG
+    printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		sbig_core_close();
+		printf("At line number %d in file %s\n", __LINE__, __FILE__);
 #endif
 #ifdef HAVE_ATIK
+    printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		atik_list_destroy();
+		printf("At line number %d in file %s\n", __LINE__, __FILE__);
 #endif
 	}
 #ifdef HAVE_SBIG
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	sbig_core_init(imgBasePath);
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 #endif
 #ifdef HAVE_URVC
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	urvc_core_init();
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 #endif
-
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if (databuffer[0] != NULL)
 	{
+	  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		free(databuffer[0]);
+		printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		databuffer[0] = NULL;
+		printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	}
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if (databuffer[1] != NULL)
 	{
+	  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		free(databuffer[1]);
+		printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		databuffer[1] = NULL;
+		printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	}
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	camid = 0;
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if (first_time)
 	{
+	  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		cammodel = (char*)realloc(cammodel, 64);
+		printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		cammsg = (char*)realloc(cammsg, 1024);
+		printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		first_time = 0;
+		printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	}
-	cammodel[0] = '\0';	
-	cammsg[0] = '\0';	
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
+	cammodel[0] = '\0';
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
+	cammsg[0] = '\0';
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	imgcam_init_list(0);
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	imgcam_get_camui()->hasgain = 0;
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	imgcam_get_camui()->hasoffset = 0;
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	strcpy(imgcam_get_camui()->binstr, "");
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	strcpy(imgcam_get_camui()->roistr, "");
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	strcpy(imgcam_get_camui()->spdstr, "");
-	strcpy(imgcam_get_camui()->modstr, ""); 
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
+	strcpy(imgcam_get_camui()->modstr, "");
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	strcpy(imgcam_get_camui()->moddsc, ""); // This is the current label for multi-purpose modstr
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	strcpy(imgcam_get_camui()->ampstr, "");
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	strcpy(imgcam_get_camui()->snrstr, "");
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	strcpy(imgcam_get_camui()->bppstr, "");
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	strcpy(imgcam_get_camui()->byrstr, "0");
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	strcpy(imgcam_get_camui()->tecstr, "");
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	strcpy(imgcam_get_camui()->whlstr, "");
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	imgcam_get_camui()->shutterMode = 0;
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	imgcam_get_camui()->pszx = 0;
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	imgcam_get_camui()->pszy = 0;
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 
 	// Positively no tec
 	imgcam_get_tecp()->istec      = 0;      // 0 = Not driveable tec or no tec 1 = Driveable tec
-	imgcam_get_tecp()->tecerr     = 0;      // Error reading / setting tec; 
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
+	imgcam_get_tecp()->tecerr     = 0;      // Error reading / setting tec;
+	 printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	imgcam_get_tecp()->tecpwr     = 0;      // Basically 0 - tecmax
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	imgcam_get_tecp()->tecmax     = 0;      // 0-255
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	imgcam_get_tecp()->tecauto    = 0;      // 0 = Manual, 1 = Seek target temp
-	imgcam_get_tecp()->tectemp    = 0.;     // Only meaningful when tecauto = 1; 
-	imgcam_get_tecp()->settemp    = 0.;     // Only meaningful when tecauto = 1; 
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
+	imgcam_get_tecp()->tectemp    = 0.;     // Only meaningful when tecauto = 1;
+	 printf("At line number %d in file %s\n", __LINE__, __FILE__);
+	imgcam_get_tecp()->settemp    = 0.;     // Only meaningful when tecauto = 1;
+	 printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	imgcam_get_tecp()->tecedit	= 0;
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 
 	loaded = 0;
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	connected = 0;
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 }
 
 void imgcam_end()
@@ -447,98 +501,130 @@ void imgcam_end()
 
 char *imgcam_init_list(int all)
 {
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	/// Value "No cam" of the models combo
 	strcpy(imgcam_get_camui()->camstr, C_("camio","None"));
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if ((imgcam_iscamera("QHY2-Old")) || (all))
 	{
+	  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		strcat(imgcam_get_camui()->camstr, "|QHY2-Old");
 	}
-
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if ((imgcam_iscamera("QHY5")) || (all))
 	{
+	  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		strcat(imgcam_get_camui()->camstr, "|QHY5");
 	}
-	
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if ((imgcam_iscamera("QHY5II-Series")) || (all))
 	{
+	  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		strcat(imgcam_get_camui()->camstr, "|QHY5II-Series");
 	}
-
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if ((imgcam_iscamera("miniCAM5-Series")) || (all))
 	{
+	  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		strcat(imgcam_get_camui()->camstr, "|miniCAM5-Series");
 	}
-
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if ((imgcam_iscamera("QHY6")) || (all))
 	{
+	  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		strcat(imgcam_get_camui()->camstr, "|QHY6");
 	}
-	
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if ((imgcam_iscamera("QHY6-Old")) || (all))
 	{
+	  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		strcat(imgcam_get_camui()->camstr, "|QHY6-Old");
 	}
-	
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if ((imgcam_iscamera("QHY7")) || (all))
 	{
+	  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		strcat(imgcam_get_camui()->camstr, "|QHY7");
 	}
-	
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if ((imgcam_iscamera("QHY8-Old")) || (all))
 	{
+	  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		strcat(imgcam_get_camui()->camstr, "|QHY8-Old");
 	}
-
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if ((imgcam_iscamera("QHY8L")) || (all))
 	{
+	  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		strcat(imgcam_get_camui()->camstr, "|QHY8L");
 	}
-	
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if ((imgcam_iscamera("QHY9")) || (all))
 	{
+	  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		strcat(imgcam_get_camui()->camstr, "|QHY9");
 	}
-
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if ((imgcam_iscamera("IC8300")) || (all))
 	{
+	  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		strcat(imgcam_get_camui()->camstr, "|IC8300");
 	}
-	
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if ((imgcam_iscamera("QHY90A")) || (all))
 	{
+	  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		strcat(imgcam_get_camui()->camstr, "|QHY90A");
 	}
-
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if ((imgcam_iscamera("QHY10")) || (all))
 	{
+	  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		strcat(imgcam_get_camui()->camstr, "|QHY10");
 	}
-
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if ((imgcam_iscamera("QHY11")) || (all))
 	{
+	  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		strcat(imgcam_get_camui()->camstr, "|QHY11");
 	}
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if ((imgcam_iscamera("QHY12")) || (all))
 	{
+	  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		strcat(imgcam_get_camui()->camstr, "|QHY12");
 	}
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if ((imgcam_iscamera("DSI2PRO")) || (all))
 	{
+	  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 		strcat(imgcam_get_camui()->camstr, "|DSI2PRO");
 	}
+printf("At line number %d in file %s\n", __LINE__, __FILE__);
 #ifdef HAVE_SBIG
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	sbig_core_reload_list();
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	strcat(imgcam_get_camui()->camstr, sbig_GetCameraList()->camlist);
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 #endif
 #ifdef HAVE_URVC
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	urvc_core_reload_list();
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	strcat(imgcam_get_camui()->camstr, urvc_GetCameraList()->camlist);
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 #endif
 #ifdef HAVE_ATIK
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	atik_list_create();
-	strcat(imgcam_get_camui()->camstr, atik_list_get());	
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
+	strcat(imgcam_get_camui()->camstr, atik_list_get());
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 #endif
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	strcat(imgcam_get_camui()->camstr, "|:0");
+  printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	return imgcam_get_camui()->camstr;
 }
 

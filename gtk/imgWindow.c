@@ -1802,29 +1802,45 @@ void imgwin_build()
 	watchCursor = gdk_cursor_new(GDK_WATCH);
 	
 	// Code Init
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	imgcam_init();
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	imgfit_init();
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	imgcfw_init();
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	fithdr_init(fithdr, FITHDR_SLOTS);
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	/// Value "No cam" of the models combo
 	imgcam_set_model(C_("camio","None"));
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 
 	// Main window build
-	window_build();	
+	window_build();
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	// Draw all
 	gtk_widget_show_all(window);
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 
 	// Get fwhm lablel max allocated size
 	//gtk_label_set_text(GTK_LABEL(lbl_fbkfwhm), "FWHM=05.20, Peak=65535, FWHM/Peak=05.20");
 	gtk_label_set_text(GTK_LABEL(lbl_fbkfwhm), "HFD=05.20, Peak=65535");
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	GtkAllocation *alloc = g_new0 (GtkAllocation, 1);
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	gtk_widget_get_allocation(GTK_WIDGET(lbl_fbkfwhm), alloc);
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	fwhmlblw = alloc->width;
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	fwhmlblh = alloc->height;
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	// Cleanup
 	gtk_label_set_text(GTK_LABEL(lbl_fbkfwhm), "");
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	g_free(alloc);
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	printf("GTK M: %d, m: %d, u: %d\n", GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION);
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 }
 
 gpointer fiforead ()
