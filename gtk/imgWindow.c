@@ -287,15 +287,20 @@ void cmd_crss_build()
 	{
 		gtk_image_set_from_pixbuf(GTK_IMAGE(img_crss), crspixbuf);
 		gtk_button_set_image(GTK_BUTTON(cmd_crss), img_crss);
+		g_object_unref(crspixbuf);
 	}
 	else
 	{
-		gtk_button_set_label(GTK_BUTTON(cmd_crss), "C");	
-	}
-	g_object_unref(crspixbuf);
-	if (error != NULL)
-	{
-		g_error_free(error);
+		gtk_button_set_label(GTK_BUTTON(cmd_crss), "C");
+
+		// error should always be set at this point, as gdk_pixbuf_new_from_file
+		// sets an error any time it returns a null pixel buffer. See:
+		// https://developer.gnome.org/gdk-pixbuf/stable/gdk-pixbuf-File-Loading.html#gdk-pixbuf-new-from-file
+		// I'm leaving this if statement only in case this gtk behavior changes.
+		if (error != NULL)
+		{
+			g_error_free(error);
+		}
 	}
 
 	// Callbacks
