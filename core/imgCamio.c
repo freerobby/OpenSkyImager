@@ -449,12 +449,14 @@ char *imgcam_init_list(int all)
 {
 	/// Value "No cam" of the models combo
 	strcpy(imgcam_get_camui()->camstr, C_("camio","None"));
-	printf("At line number %d in file %s\n", __LINE__, __FILE__);
+
 	if ((imgcam_iscamera("QHY2-Old")) || (all))
 	{
+	  
 		strcat(imgcam_get_camui()->camstr, "|QHY2-Old");
+		
 	}
-
+  
 	if ((imgcam_iscamera("QHY5")) || (all))
 	{
 		strcat(imgcam_get_camui()->camstr, "|QHY5");
@@ -469,7 +471,7 @@ char *imgcam_init_list(int all)
 	{
 		strcat(imgcam_get_camui()->camstr, "|miniCAM5-Series");
 	}
-
+     
 	if ((imgcam_iscamera("QHY6")) || (all))
 	{
 		strcat(imgcam_get_camui()->camstr, "|QHY6");
@@ -527,6 +529,7 @@ char *imgcam_init_list(int all)
 	{
 		strcat(imgcam_get_camui()->camstr, "|DSI2PRO");
 	}
+        
 #ifdef HAVE_SBIG
 	sbig_core_reload_list();
 	strcat(imgcam_get_camui()->camstr, sbig_GetCameraList()->camlist);

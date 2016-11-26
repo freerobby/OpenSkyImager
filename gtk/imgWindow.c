@@ -274,27 +274,38 @@ void cmd_fit_build()
 
 void cmd_crss_build()
 {
+
 	GError *error = NULL;
-	char imgCrssIco[PATH_MAX];
 	
+	char imgCrssIco[PATH_MAX];
+
 	cmd_crss = gtk_toggle_button_new_with_label_color("", 25, 30, &clrSelected);	
 
 	strcpy(imgCrssIco, imgBasePath);
+	
 	strcat(imgCrssIco, CRSSICO);
+	
 	img_crss = gtk_image_new();
+	
 	GdkPixbuf *crspixbuf = gdk_pixbuf_new_from_file(imgCrssIco, &error);
+	
 	if(crspixbuf) 
 	{
+	
 		gtk_image_set_from_pixbuf(GTK_IMAGE(img_crss), crspixbuf);
 		gtk_button_set_image(GTK_BUTTON(cmd_crss), img_crss);
+		g_object_unref(crspixbuf);
 	}
 	else
 	{
+	
 		gtk_button_set_label(GTK_BUTTON(cmd_crss), "C");	
 	}
-	g_object_unref(crspixbuf);
+	
+	
 	if (error != NULL)
 	{
+	
 		g_error_free(error);
 	}
 
@@ -1615,27 +1626,44 @@ void tab_settings_build()
 void box_top_left_build()
 {
 	// Button box left
+	
 	box_top_left = gtk_table_new(10, 6, FALSE);
+	
 	gtk_table_set_row_spacings(GTK_TABLE(box_top_left), 4);
 	gtk_table_set_col_spacings(GTK_TABLE(box_top_left), 4);
 	// This is what sets the left part minimim hsize
 	gtk_widget_set_size_request(box_top_left, 190, 300);
+	
 	gtk_container_set_border_width(GTK_CONTAINER(box_top_left), 4);
 
 	cmd_settings_build();
+	
 	cmd_about_build();
+	
 	cmd_capture_build();
+	
 	cmd_exptime_build();
+	
 	spn_exptime_build();
+	
 	spn_expnum_build();
+	
 	spn_shots_build();
+	
 	pbr_expnum_build();
+	
 	cmd_run_build();
+	
 	pbr_exptime_build();
+	
 	cmd_hold_build();
+	
 	cmd_load_build();
+	
 	cmd_crss_build();
+	
 	cmd_fit_build();
+	
 
 	// Pack into box_top_left
 	gtk_table_attach(GTK_TABLE(box_top_left), cmd_about   , 0, 1, 0,  1, GTK_SHRINK | GTK_FILL, GTK_EXPAND | GTK_SHRINK | GTK_FILL, 0, 0);
@@ -1659,6 +1687,7 @@ void box_top_left_build()
 
 void box_bot_left_build()
 {
+
 	// Button box left
 	box_bot_left = gtk_table_new(10, 6, FALSE);
 	gtk_table_set_row_spacings(GTK_TABLE(box_bot_left), 4);
@@ -1666,11 +1695,17 @@ void box_bot_left_build()
 	gtk_widget_set_size_request(box_bot_left, 190, -1);
 	gtk_container_set_border_width(GTK_CONTAINER(box_bot_left), 4);
 
+
 	cmd_histogram_build();
+	
 	spn_histogram_build();
+	
 	hsc_maxadu_build();
+	
 	frm_histogram_build();
+	
 	hsc_minadu_build();
+	
 
 	// Pack into btnbox
 	gtk_table_attach(GTK_TABLE(box_bot_left), cmd_histogram, 0, 3, 0,  1, GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL, 0, 0);
@@ -1682,11 +1717,16 @@ void box_bot_left_build()
 
 void pnd_left_build()
 {
+
 	pnd_left = gtk_vpaned_new();
+	
 	gtk_paned_set_position(GTK_PANED(pnd_left), 300);
+	
 
 	box_top_left_build();
+	
 	box_bot_left_build();
+	
 
 	// Pack boxes into pnd_left
 	gtk_paned_pack1(GTK_PANED(pnd_left), box_top_left, TRUE, FALSE);
@@ -1711,12 +1751,15 @@ void tab_right_build()
 
 void pnd_main_build()
 {
+
 	pnd_main = gtk_hpaned_new();
+	
 	gtk_paned_set_position(GTK_PANED(pnd_main), 210);
 
 	pnd_left_build();
+	
 	tab_right_build();
-
+                                                               
 	// Pack boxes into pnd_main
 	gtk_paned_pack1(GTK_PANED(pnd_main), pnd_left, TRUE, FALSE);
 	gtk_paned_pack2(GTK_PANED(pnd_main), tab_right, TRUE, FALSE);
@@ -1724,10 +1767,14 @@ void pnd_main_build()
 
 void box_main_build()
 {
+  
 	box_main = gtk_table_new(100, 10, FALSE);
-	
+
 	imgstatus_build();
+	
+
 	pnd_main_build();
+	
 	
 	gtk_table_attach(GTK_TABLE(box_main), imgstatec,   0,  26,  0,  1, GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL, 0, 0);
 	gtk_table_attach(GTK_TABLE(box_main), gtk_vseparator_new(),  26,  27, 0,  1, GTK_SHRINK, GTK_FILL, 0, 0);
@@ -1735,26 +1782,31 @@ void box_main_build()
 	gtk_table_attach(GTK_TABLE(box_main), gtk_vseparator_new(),  75,  76, 0,  1, GTK_SHRINK, GTK_FILL, 0, 0);
 	gtk_table_attach(GTK_TABLE(box_main), imgstafit,  76, 100,  0,  1, GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_FILL, 0, 0);
 	gtk_table_attach(GTK_TABLE(box_main), pnd_main ,   0, 100,  1, 10, GTK_EXPAND | GTK_SHRINK | GTK_FILL, GTK_EXPAND | GTK_SHRINK | GTK_FILL, 0, 0);
+	
 }
 
 void window_build()
 {
 	GError *error = NULL;
 	GdkGeometry hints;
-
+  
 	// Main window definitions
+	  
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	hints.min_width = 750;
 	hints.max_width = gdk_screen_get_width(gtk_widget_get_screen(window));
 	hints.min_height = 500;
 	hints.max_height = gdk_screen_get_height(gtk_widget_get_screen(window));
+	  
 	gtk_window_set_title(GTK_WINDOW(window), APPTIT);
 	gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
 	gtk_window_set_default_size(GTK_WINDOW(window), 780, 515);
 	gtk_window_set_resizable(GTK_WINDOW(window), TRUE);
 	gtk_container_set_border_width(GTK_CONTAINER(window), 0);
 	gtk_window_set_geometry_hints(GTK_WINDOW(window), window, &hints, (GdkWindowHints)(GDK_HINT_MIN_SIZE | GDK_HINT_MAX_SIZE));
+	  
 	icopixbuf = gdk_pixbuf_new_from_file(imgAppIco, &error);
+	  
 	if(icopixbuf) 
 	{
 		gtk_window_set_icon(GTK_WINDOW(window), icopixbuf);
@@ -1779,18 +1831,20 @@ void window_build()
 	#endif
 	gtk_color_get_lighter(&clrSelected);
 	gtk_color_get_alert(&clrKill);
-
+  
 	// Pre set for display button images
 	g_object_set(gtk_settings_get_default(), "gtk-button-images", TRUE, NULL); 
-
+  
 	box_main_build();
-
+  
 	// Pack the pnd_main in window
 	gtk_container_add(GTK_CONTAINER(window), box_main);
-
+  
 	// Callbacks
 	g_signal_connect(G_OBJECT(window), "delete-event", G_CALLBACK (mainw_delete_event), NULL);
+	  
 	g_signal_connect(G_OBJECT(window), "destroy", G_CALLBACK (mainw_destroy), NULL);
+	  
 }
 
 void imgwin_build()
@@ -1810,15 +1864,21 @@ void imgwin_build()
 	imgcam_set_model(C_("camio","None"));
 
 	// Main window build
-	window_build();	
+	
+	window_build();
+  
 	// Draw all
 	gtk_widget_show_all(window);
 
 	// Get fwhm lablel max allocated size
 	//gtk_label_set_text(GTK_LABEL(lbl_fbkfwhm), "FWHM=05.20, Peak=65535, FWHM/Peak=05.20");
+  
 	gtk_label_set_text(GTK_LABEL(lbl_fbkfwhm), "HFD=05.20, Peak=65535");
+	
 	GtkAllocation *alloc = g_new0 (GtkAllocation, 1);
+	
 	gtk_widget_get_allocation(GTK_WIDGET(lbl_fbkfwhm), alloc);
+	
 	fwhmlblw = alloc->width;
 	fwhmlblh = alloc->height;
 	// Cleanup
