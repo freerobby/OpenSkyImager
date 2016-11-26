@@ -52,8 +52,10 @@ int find_camera(int vendorid, int productid)
 				}
 			}
 		}
+
+		libusb_free_device_list(list, 1);
 	}
-	libusb_free_device_list(list, 1);
+
 	return (retcode);
 }
 
@@ -64,7 +66,7 @@ int open_camera(int vendorid, int productid, libusb_device_handle **handle, char
 	libusb_device *found = NULL;
 	ssize_t i = 0;
 	struct libusb_device_descriptor dev_desc;
-	
+
 	if(libusb_init(NULL) == 0)
 	{
 		ssize_t cnt = libusb_get_device_list(NULL, &list);
@@ -107,8 +109,9 @@ int open_camera(int vendorid, int productid, libusb_device_handle **handle, char
 				found = NULL;
 			}
 		}
+
+		libusb_free_device_list(list, 1);
 	}
-	libusb_free_device_list(list, 1);
 	return retcode;
 }
 
