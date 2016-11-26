@@ -449,6 +449,7 @@ char *imgcam_init_list(int all)
 {
 	/// Value "No cam" of the models combo
 	strcpy(imgcam_get_camui()->camstr, C_("camio","None"));
+	printf("At line number %d in file %s\n", __LINE__, __FILE__);
 	if ((imgcam_iscamera("QHY2-Old")) || (all))
 	{
 		strcat(imgcam_get_camui()->camstr, "|QHY2-Old");
