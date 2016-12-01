@@ -2,6 +2,10 @@
 #Collect parameters in named vars for ease of use
 basedir=$1
 cpu=`uname -p`
+if [[ $cpu == "unknown" ]]
+then
+	cpu=`/usr/bin/lscpu | /bin/grep "Architecture\:" | /bin/sed "s/Architecture\:\s\+//"`
+fi
 bit=`getconf LONG_BIT`
 if [[ $cpu == *arm* ]]
 then
